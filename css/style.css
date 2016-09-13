@@ -26,22 +26,25 @@ main {
   height: 100%;
 }
 
-h1 {
+.title {
   font-family: 'Work Sans', sans-serif;
   font-size: 64px;
   font-weight: 800;
   margin: 0.2em 0;
 }
 
-h2 {
+.subtitle {
   font-size: 28px;
   margin: 0.2em 0;
 }
 
-h2 span {
+.subtitle span {
   font-size: 18px;
   font-style: italic;
   text-transform: uppercase;
+  position: relative;
+  top: -2px;
+  padding: 6px;
 }
 
 .sections {
@@ -62,10 +65,11 @@ h2 span {
 .sections li span.cover {
   position: absolute;
   color: #5599D3;
+  background-color: #fff;
   width: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition: width 600ms ease-in-out;
+  transition: width 400ms cubic-bezier(0.42, 0.08, 0.2, 0.98);
   left: 0;
   top: 0;
 }
