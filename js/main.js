@@ -19,7 +19,7 @@ function render (component, container) {
 }
 
 const wrapper = document.querySelector('#wrapper')
-render(canvas, document.body)
+setTimeout(() => render(canvas, document.body), 400)
 render(home, wrapper)
 setTimeout(() => {
   home.willUnmount()

@@ -23,10 +23,8 @@ export default {
     const end = [width - margin, height - margin]
     const color = 'rgb(180, 180, 180)'
     const duration = 1400
-    setTimeout(() => {
-      this.drawer.arc([start, [margin, height - margin], end], duration, color)
-      this.drawer.arc([start, [width - margin, margin], end], duration, color)
-    }, 1000)
+    this.drawer.arc([start, [margin, height - margin], end], duration, color)
+    this.drawer.arc([start, [width - margin, margin], end], duration, color)
   },
 
   willUnmount () {
