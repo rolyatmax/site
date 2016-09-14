@@ -1,7 +1,6 @@
-import Drawer from 'drawer'
+import Sketch from 'sketch-js'
+import visualizations from './visualizations'
 import { style } from './helpers'
-
-const margin = 80
 
 export default {
   willMount (select) {
@@ -14,27 +13,27 @@ export default {
       height: '100vh',
       width: '100vw'
     })
+    this.ctx = Sketch.create({
+      autostart: false,
+      autoclear: false,
+      container: this.canvasContainer
+    })
   },
 
   didMount () {
-    this.drawer = new Drawer(this.canvasContainer)
-    const { width, height } = this.drawer.canvas
-    const start = [margin, margin]
-    const end = [width - margin, height - margin]
-    const color = 'rgb(180, 180, 180)'
-    const duration = 1400
-    this.drawer.arc([start, [margin, height - margin], end], duration, color)
-    this.drawer.arc([start, [width - margin, margin], end], duration, color)
+    this.ctx.start()
+    const intro = visualizations[0]
+    this.currentVisualization = intro
+    const promise = this.currentVisualization.start(this.ctx)
+    promise.then(() => {
+      console.log('INTRO DONE!')
+      this.currentVisualization = visualizations[1]
+      return this.currentVisualization.start(this.ctx)
+    })
   },
 
   willUnmount () {
-    const { width, height } = this.drawer.canvas
-    const start = [margin, margin]
-    const end = [width - margin, height - margin]
-    const color = 'rgb(255, 255, 255)'
-    const duration = 2500
-    this.drawer.arc([start, [margin, height - margin], end], duration, color)
-    this.drawer.arc([start, [width - margin, margin], end], duration, color)
+    return this.currentVisualization.stop()
   },
 
   render () {
