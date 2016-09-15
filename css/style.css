@@ -65,7 +65,7 @@ main {
 .sections li span.cover {
   position: absolute;
   color: #5599D3;
-  background-color: #fff;
+  /*background-color: #fff;*/
   width: 0;
   overflow: hidden;
   white-space: nowrap;

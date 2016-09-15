@@ -21,7 +21,7 @@ function render (component, container) {
 const wrapper = document.querySelector('#wrapper')
 setTimeout(() => render(canvas, document.body), 400)
 render(home, wrapper)
-setTimeout(() => {
-  home.willUnmount()
-  canvas.willUnmount()
-}, 7000)
+// setTimeout(() => {
+//   home.willUnmount()
+//   canvas.willUnmount()
+// }, 29000)

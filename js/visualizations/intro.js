@@ -1,76 +1,49 @@
-import { easeIn, dist } from '../helpers'
+import { distance, add, subtract, scale } from 'gl-vec2'
+import { easeIn, startAnimation } from '../helpers'
 
 const margin = 40
 const color = 'rgb(180, 180, 180)'
 const width = 1
-let startTime
 
-export default {
-  start (ctx) {
-    this.ctx = ctx
-    return new Promise((resolve, reject) => {
-      const duration = 1400
-
-      this.ctx.draw = function () {
-        this.clear()
-        const start = [margin, margin]
-        const end = [this.width - margin, this.height - margin]
-
-        startTime = startTime || this.millis
-        const step = (this.millis - startTime) / duration
+export default function () {
+  return {
+    start (ctx) {
+      return startAnimation((step) => {
+        ctx.clear()
         const perc = easeIn(step, 0, 1)
 
-        const arcs = [
-          [start, [margin, this.height - margin], end],
-          [start, [this.width - margin, margin], end]
-        ]
-
-        drawArc(this, cutArc(arcs[0], perc), color, width)
-        drawArc(this, cutArc(arcs[1], perc), color, width)
-
-        if (perc >= 1) {
-          this.stop()
-          startTime = null
-          resolve()
-        }
-      }
-
-      this.ctx.start()
-    })
-  },
-
-  stop () {
-    if (!this.ctx) throw new Error('Intro: visualization has not been started!')
-
-    return new Promise((resolve, reject) => {
-      const duration = 2200
-
-      this.ctx.draw = function () {
-        this.clear()
         const start = [margin, margin]
-        const end = [this.width - margin, this.height - margin]
-
-        startTime = startTime || this.millis
-        const step = (this.millis - startTime) / duration
-        const perc = easeIn(step, 0, 1)
-
+        const end = [ctx.width - margin, ctx.height - margin]
         const arcs = [
-          [start, [margin, this.height - margin], end].reverse(),
-          [start, [this.width - margin, margin], end].reverse()
+          [start, [margin, ctx.height - margin], end],
+          [start, [ctx.width - margin, margin], end]
         ]
 
-        drawArc(this, cutArc(arcs[0], 1 - perc), color, width)
-        drawArc(this, cutArc(arcs[1], 1 - perc), color, width)
+        drawArc(ctx, cutArc(arcs[0], perc), color, width)
+        drawArc(ctx, cutArc(arcs[1], perc), color, width)
+      }, 2200).then(() => finish(ctx))
+    },
 
-        if (perc >= 1) {
-          this.stop()
-          startTime = null
-          resolve()
-        }
-      }
+    stop (ctx) {
+      return finish(ctx)
+    }
+  }
 
-      this.ctx.start()
-    })
+  function finish (ctx) {
+    return startAnimation((step) => {
+      ctx.clear()
+      const start = [margin, margin]
+      const end = [ctx.width - margin, ctx.height - margin]
+      const perc = easeIn(step, 0, 1)
+
+      const arcs = [
+        [start, [margin, ctx.height - margin], end].reverse(),
+        [start, [ctx.width - margin, margin], end].reverse()
+      ]
+
+      drawArc(ctx, cutArc(arcs[0], 1 - perc), color, width)
+      drawArc(ctx, cutArc(arcs[1], 1 - perc), color, width)
+    }, 2200)
   }
 }
 
@@ -86,7 +59,7 @@ function drawArc (ctx, arc, color, width) {
 function getArcDist (arc) {
   let last = arc[0]
   return arc.reduce((total, pt) => {
-    total += dist(last, pt)
+    total += distance(last, pt)
     last = pt
     return total
   }, 0)
@@ -98,7 +71,7 @@ function cutArc (arc, perc) {
   let toDraw = [last]
   for (let i = 1, len = arc.length; i < len; i++) {
     let pt = arc[i]
-    let segmentDist = dist(last, pt)
+    let segmentDist = distance(last, pt)
     if (!segmentDist) {
       continue
     }
@@ -112,9 +85,10 @@ function cutArc (arc, perc) {
       continue
     }
     let cutPerc = toGo / segmentDist
-    let x = (pt[0] - last[0]) * cutPerc + last[0]
-    let y = (pt[1] - last[1]) * cutPerc + last[1]
-    toDraw.push([x, y])
+    let diff = subtract([], pt, last)
+    diff = scale(diff, diff, cutPerc)
+    let cutLine = add([], diff, last)
+    toDraw.push(cutLine)
     break
   }
   return toDraw

@@ -1,3 +1,5 @@
+const { requestAnimationFrame } = window
+
 export function style (element, styles) {
   Object.keys(styles).forEach((style) => {
     element.style[style] = styles[style]
@@ -18,8 +20,19 @@ export function easeIn (step, start, change) {
   return change * (1 - Math.pow(1 - step, 3)) + start
 }
 
-export function dist ([x1, y1], [x2, y2]) {
-  let xDist = x2 - x1
-  let yDist = y2 - y1
-  return Math.sqrt(xDist * xDist + yDist * yDist)
+export function startAnimation (renderFn, duration) {
+  var startTime
+  return new Promise(function (resolve) {
+    function _render (t) {
+      startTime = startTime || t
+      var step = (t - startTime) / duration
+      renderFn(step)
+      if (step < 1) {
+        requestAnimationFrame(_render)
+      } else {
+        resolve()
+      }
+    }
+    requestAnimationFrame(_render)
+  })
 }
