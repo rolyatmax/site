@@ -1,6 +1,6 @@
-import { style, shuffle } from './helpers'
+import { style, shuffle, setTimeoutPromise } from './helpers'
 
-export function createBlurFader(element) {
+export function createBlurFader (element) {
   const html = element
     .textContent.split('')
     .map(l => `<span>${l}</span>`)
@@ -24,52 +24,58 @@ export function createBlurFader(element) {
 
   return {
     el: element,
-    fadeIn(duration) {
-      shuffle(letters).forEach((letter, i) => {
-        const delay = `${i * 50}ms`
+    fadeIn (duration) {
+      const promises = shuffle(letters).map((letter, i) => {
+        const delay = i * 50
         style(letter, {
           textShadow: `${color} 0 0 0`,
           opacity: 1,
           transition: [
-            `text-shadow ${duration}ms ${easeIn} ${delay}`,
-            `opacity ${duration}ms ease-in ${delay}`
+            `text-shadow ${duration}ms ${easeIn} ${delay}ms`,
+            `opacity ${duration}ms ease-in ${delay}ms`
           ].join(', ')
         })
+        return setTimeoutPromise(delay)
       })
+      return Promise.all(promises)
     },
-    fadeOut(duration) {
-      shuffle(letters).forEach((letter, i) => {
-        const delay = `${i * 50}ms`
+    fadeOut (duration) {
+      const promises = shuffle(letters).map((letter, i) => {
+        const delay = i * 50
         style(letter, {
           textShadow: `${color} 0 0 50px`,
           opacity: 0,
           transition: [
-            `text-shadow ${duration}ms ${easeOut} ${delay}`,
-            `opacity ${duration}ms ease-out ${delay}`
+            `text-shadow ${duration}ms ${easeOut} ${delay}ms`,
+            `opacity ${duration}ms ease-out ${delay}ms`
           ].join(', ')
         })
+        return setTimeoutPromise(delay)
       })
+      return Promise.all(promises)
     }
   }
 }
 
-export function createFader(element) {
+export function createFader (element) {
   style(element, {
     opacity: 0
   })
   return {
     el: element,
-    fadeIn(duration, ease = 'linear') {
+    fadeIn (duration, ease = 'linear') {
       style(element, {
         opacity: 1,
         transition: `opacity ${duration}ms ${ease}`
       })
+      return setTimeoutPromise(duration)
     },
-    fadeOut(duration, ease = 'linear') {
+    fadeOut (duration, ease = 'linear') {
       style(element, {
         opacity: 0,
         transition: `opacity ${duration}ms ${ease}`
       })
+      return setTimeoutPromise(duration)
     }
   }
 }

@@ -13,7 +13,9 @@
   "author": "Taylor Baldwin <taylorbaldwin@gmail.com> (https://tbaldw.in)",
   "license": "ISC",
   "dependencies": {
+    "delegate": "^3.0.1",
     "gl-vec2": "^1.0.0",
+    "map-obj": "^2.0.0",
     "sketch-js": "^1.1.1"
   },
   "devDependencies": {

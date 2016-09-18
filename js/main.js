@@ -1,27 +1,21 @@
-import home from './home'
-import canvas from './canvas'
+import { subscribe } from './store'
+import { createRenderer } from './renderer'
+import { setTimeoutPromise } from './helpers'
 
-const { requestAnimationFrame } = window
+import { createAppCanvas } from './canvas'
+import components from './components'
 
-function render (component, container) {
-  let div = document.createElement('div')
-  div.innerHTML = component.render()
-  if (component.willMount) component.willMount(div.querySelector.bind(div))
-  requestAnimationFrame(() => {
-    const componentDOM = Array.from(div.children)
-    componentDOM.forEach(container.appendChild.bind(container))
-    if (component.didMount) {
-      requestAnimationFrame(() => {
-        component.didMount(container.querySelector.bind(container))
-      })
-    }
-  })
-}
+const renderComponent = createRenderer()
 
 const wrapper = document.querySelector('#wrapper')
-setTimeout(() => render(canvas, document.body), 400)
-render(home, wrapper)
-// setTimeout(() => {
-//   home.willUnmount()
-//   canvas.willUnmount()
-// }, 29000)
+renderComponent(components.home, wrapper)
+setTimeoutPromise(400).then(() => {
+  const appCanvas = createAppCanvas()
+  document.body.appendChild(appCanvas.el)
+  appCanvas.start()
+})
+
+subscribe(({ section }) => {
+  const component = components[section]
+  renderComponent(component, wrapper)
+})

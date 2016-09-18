@@ -1,7 +1,7 @@
 import { add, subtract, scale } from 'gl-vec2'
 import { easeIn, startAnimation } from '../helpers'
 
-const color = 'rgb(200, 200, 200)'
+const color = 'rgb(230, 230, 230)'
 const width = 1
 
 export default function () {
@@ -10,33 +10,18 @@ export default function () {
       let promises = []
       return startAnimation((step) => {
         const { width, height } = ctx
-        // ctx.clear()
         const perc = easeIn(step, 0, 1)
         const lines = createLines({ width, height })
         const newLines = lines.slice(promises.length, lines.length * perc | 0)
         newLines.forEach((line) => {
-        // lines.slice(0, lines.length * perc | 0).forEach((line) => {
-
-
-
-
-
-
-
-///////////////////////////// not working right now
-
-////////////////////////// try to get all `startAnimation` loops on the same
-///////////// loop - their clears are cobbering each other - only works without autoclear
-
           promises.push(startAnimation((s) => {
             const p = easeIn(s, 0, 1)
-            line = cutLine(line, perc)
-            drawLine(ctx, line)
-          }, 1500))
+            drawLine(ctx, cutLine(line, p))
+          }, 2500))
         })
-      }, 6000)
+      }, 4500)
       .then(() => Promise.all(promises))
-      // .then(() => finish(ctx))
+      .then(() => finish(ctx))
     },
 
     stop (ctx) {
@@ -54,7 +39,7 @@ export default function () {
         line = cutLine(line, 1 - perc)
         drawLine(ctx, line)
       })
-    }, 2000)
+    }, 6000)
   }
 
   function createLines ({ width, height }) {

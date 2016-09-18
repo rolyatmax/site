@@ -36,3 +36,7 @@ export function startAnimation (renderFn, duration) {
     requestAnimationFrame(_render)
   })
 }
+
+export function setTimeoutPromise (wait) {
+  return new Promise(resolve => setTimeout(resolve, wait))
+}

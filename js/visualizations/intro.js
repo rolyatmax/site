@@ -4,6 +4,7 @@ import { easeIn, startAnimation } from '../helpers'
 const margin = 40
 const color = 'rgb(180, 180, 180)'
 const width = 1
+const duration = 2200
 
 export default function () {
   return {
@@ -21,7 +22,7 @@ export default function () {
 
         drawArc(ctx, cutArc(arcs[0], perc), color, width)
         drawArc(ctx, cutArc(arcs[1], perc), color, width)
-      }, 2200).then(() => finish(ctx))
+      }, duration).then(() => finish(ctx))
     },
 
     stop (ctx) {
@@ -43,7 +44,7 @@ export default function () {
 
       drawArc(ctx, cutArc(arcs[0], 1 - perc), color, width)
       drawArc(ctx, cutArc(arcs[1], 1 - perc), color, width)
-    }, 2200)
+    }, duration)
   }
 }
 
