@@ -57,25 +57,7 @@ main {
 }
 
 .sections li {
-  position: relative;
   cursor: pointer;
-  transition: color 200ms cubic-bezier(0.42, 0.08, 0.2, 0.98);
-}
-
-.sections li span.cover {
-  position: absolute;
-  color: #5599D3;
-  /*background-color: #fff;*/
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: width 400ms cubic-bezier(0.42, 0.08, 0.2, 0.98);
-  left: 0;
-  top: 0;
-}
-
-.sections li:hover span.cover {
-  width: 100%;
 }
 
 .sections li em {
@@ -102,10 +84,10 @@ main {
 }
 
 .social-icons li:hover svg {
-  fill: #5599D3;
+  fill: #5599d3;
 }
 
 .social-icons svg {
-  transition: fill 200ms cubic-bezier(0.42, 0.08, 0.2, 0.98);
+  transition: fill 300ms cubic-bezier(0.42, 0.08, 0.2, 0.98);
   fill: #424242;
 }

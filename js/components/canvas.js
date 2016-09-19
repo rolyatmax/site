@@ -1,9 +1,10 @@
 import Sketch from 'sketch-js'
-import visualizations from './visualizations'
-import { style } from './helpers'
+import visualizations from '../visualizations'
+import { style } from '../helpers'
 
 export function createAppCanvas () {
   let loopCallbacks = []
+  let themeChangeCallbacks = []
   let currVizIndex = 0
   let curViz = null
   let ctx
@@ -30,7 +31,7 @@ export function createAppCanvas () {
     tick: tick
   })
 
-  return { start, destroy, el }
+  return { start, destroy, onThemeChange, el }
 
   function start () {
     ctx.start()
@@ -44,6 +45,10 @@ export function createAppCanvas () {
       ctx.destroy()
       ctx = null
     })
+  }
+
+  function onThemeChange (fn) {
+    themeChangeCallbacks.push(fn)
   }
 
   function tick (fn) {
@@ -60,6 +65,7 @@ export function createAppCanvas () {
 
   function startViz () {
     curViz = visualizations[currVizIndex]()
+    themeChangeCallbacks.forEach(cb => cb(curViz.isDarkTheme ? 'dark' : 'light'))
     curViz.start(ctx).then(() => {
       if (isUnmounting) return
       loopCallbacks = []

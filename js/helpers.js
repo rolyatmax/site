@@ -40,3 +40,7 @@ export function startAnimation (renderFn, duration) {
 export function setTimeoutPromise (wait) {
   return new Promise(resolve => setTimeout(resolve, wait))
 }
+
+export function rAFPromise () {
+  return new Promise(resolve => requestAnimationFrame(resolve))
+}

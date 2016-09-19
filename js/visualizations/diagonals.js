@@ -5,28 +5,28 @@ const color = 'rgb(230, 230, 230)'
 const width = 1
 
 export default function () {
-  return {
-    start (ctx) {
-      let promises = []
-      return startAnimation((step) => {
-        const { width, height } = ctx
-        const perc = easeIn(step, 0, 1)
-        const lines = createLines({ width, height })
-        const newLines = lines.slice(promises.length, lines.length * perc | 0)
-        newLines.forEach((line) => {
-          promises.push(startAnimation((s) => {
-            const p = easeIn(s, 0, 1)
-            drawLine(ctx, cutLine(line, p))
-          }, 2500))
-        })
-      }, 4500)
-      .then(() => Promise.all(promises))
-      .then(() => finish(ctx))
-    },
+  return { start, stop, isDarkTheme: true }
 
-    stop (ctx) {
-      return finish(ctx)
-    }
+  function start (ctx) {
+    let promises = []
+    return startAnimation((step) => {
+      const { width, height } = ctx
+      const perc = easeIn(step, 0, 1)
+      const lines = createLines({ width, height })
+      const newLines = lines.slice(promises.length, lines.length * perc | 0)
+      newLines.forEach((line) => {
+        promises.push(startAnimation((s) => {
+          const p = easeIn(s, 0, 1)
+          drawLine(ctx, cutLine(line, p))
+        }, 2500))
+      })
+    }, 4500)
+    .then(() => Promise.all(promises))
+    .then(() => finish(ctx))
+  }
+
+  function stop (ctx) {
+    return finish(ctx)
   }
 
   function finish (ctx) {

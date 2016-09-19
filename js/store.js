@@ -9,7 +9,7 @@ let listeners = []
 const reducers = {
   setSection: function (s, section) {
     const validSections = ['home', 'work', 'sketches']
-    if (validSections.includes(section)) return { ...s, section }
+    if (validSections.includes(section) && s.section !== section) return { ...s, section }
     return s
   }
 }
