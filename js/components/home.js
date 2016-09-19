@@ -72,7 +72,7 @@ export default {
   },
 
   willUnmount () {
-    eventDelegations.destroy()
+    eventDelegations.forEach((delegation) => delegation.destroy())
     return Promise.all([
       title.fadeOut(700),
       appCanvas.destroy(),
