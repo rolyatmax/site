@@ -1,14 +1,18 @@
 import { add, subtract, scale } from 'gl-vec2'
-import { easeIn, startAnimation } from '../helpers'
+import { easeIn, startAnimation } from '../lib/drawers'
 
 const color = 'rgb(230, 230, 230)'
 const width = 1
+const margin = 40
 
 export default function () {
-  return { start, stop, isDarkTheme: true }
+  let promises = []
+  return { start, stop }
 
   function start (ctx) {
-    let promises = []
+    const lineAnimationDuration = 5000
+    const lineIntroductionDuration = 9000
+    startAnimation(() => ctx.clear(), lineAnimationDuration + lineIntroductionDuration)
     return startAnimation((step) => {
       const { width, height } = ctx
       const perc = easeIn(step, 0, 1)
@@ -18,33 +22,18 @@ export default function () {
         promises.push(startAnimation((s) => {
           const p = easeIn(s, 0, 1)
           drawLine(ctx, cutLine(line, p))
-        }, 2500))
+        }, lineAnimationDuration))
       })
-    }, 4500)
+    }, lineIntroductionDuration)
     .then(() => Promise.all(promises))
-    .then(() => finish(ctx))
   }
 
   function stop (ctx) {
-    return finish(ctx)
-  }
-
-  function finish (ctx) {
-    return startAnimation((step) => {
-      const { width, height } = ctx
-      const lines = createLines({ width, height })
-      const perc = easeIn(step, 0, 1)
-      ctx.clear()
-      lines.forEach((line) => {
-        line = cutLine(line, 1 - perc)
-        drawLine(ctx, line)
-      })
-    }, 6000)
+    return Promise.all(promises)
   }
 
   function createLines ({ width, height }) {
     let lines = []
-    const margin = 40
     height = height - margin * 2
     width = width - margin * 2
     const steps = 20

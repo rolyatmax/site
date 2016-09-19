@@ -1,4 +1,4 @@
-import { style, shuffle, setTimeoutPromise, rAFPromise } from '../helpers'
+import { style, shuffle, setTimeoutPromise, rAFPromise } from '../lib/helpers'
 
 const easeIn = 'cubic-bezier(0.07, 0.9, 0.64, 0.98)'
 const easeOut = 'cubic-bezier(0.92, 0.06, 0.94, 0.5)'

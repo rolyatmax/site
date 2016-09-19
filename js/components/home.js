@@ -1,6 +1,6 @@
 import delegate from 'delegate'
 import { actions } from '../store'
-import { style, setTimeoutPromise } from '../helpers'
+import { style, setTimeoutPromise } from '../lib/helpers'
 import { createBlurFader, createFader } from './faders'
 import { twitter, instagram, github } from './social-icons'
 import { createAppCanvas } from './canvas'

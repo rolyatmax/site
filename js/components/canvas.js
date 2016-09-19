@@ -1,6 +1,6 @@
 import Sketch from 'sketch-js'
 import visualizations from '../visualizations'
-import { style } from '../helpers'
+import { style } from '../lib/helpers'
 
 export function createAppCanvas () {
   let loopCallbacks = []
