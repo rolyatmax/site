@@ -73,11 +73,12 @@ export default {
 
   willUnmount () {
     eventDelegations.forEach((delegation) => delegation.destroy())
+    appCanvas.destroy()
     return Promise.all([
-      title.fadeOut(700),
-      appCanvas.destroy(),
-      setTimeoutPromise(350).then(() => {
-        const promises = secondaryElements.map(el => el.fadeOut(300, 'ease-out'))
+      title.fadeOut(500),
+      // appCanvas.destroy(),
+      setTimeoutPromise(200).then(() => {
+        const promises = secondaryElements.map(el => el.fadeOut(250, 'ease-out'))
         return Promise.all(promises)
       })
     ])
