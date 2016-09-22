@@ -25,12 +25,13 @@ export function createAppCanvas () {
     autoclear: false,
     autopause: false,
     container: el,
+    globals: false,
     draw: () => {
       loopCallbacks.forEach(fn => fn(ctx))
     },
     tick: tick
   })
-
+  Sketch.install(ctx)
   return { start, destroy, onThemeChange, el }
 
   function start () {
@@ -66,6 +67,7 @@ export function createAppCanvas () {
   function startViz () {
     curViz = visualizations[currVizIndex]()
     themeChangeCallbacks.forEach(cb => cb(curViz.isDarkTheme ? 'dark' : 'light'))
+    ctx.millis = 0
     curViz.start(ctx).then(() => {
       if (isUnmounting) return
       loopCallbacks = []
