@@ -1,7 +1,7 @@
 import Alea from 'alea'
 import array from 'new-array'
 import tinycolor from 'tinycolor2'
-import { add, random } from 'gl-vec2'
+import { add, subtract, squaredLength, normalize, scale, random } from 'gl-vec2'
 import { setTimeoutPromise } from '../lib/helpers'
 import colorPalettes from '../lib/color-palettes'
 
@@ -17,6 +17,7 @@ export default function () {
   const colors = colorPalettes[rand() * colorPalettes.length | 0]
   let nodes = array(NODE_COUNT).map(() => ({
     position: random([], rand()),
+    destPosition: random([], rand()),
     velocity: random([], rand() * 0.003),
     alpha: rand() * MAX_ALPHA,
     color: colors[rand() * colors.length | 0],
@@ -31,7 +32,13 @@ export default function () {
     unsubscribe = ctx.tick((ctx) => {
       ctx.clear()
       nodes
-        .map((node) => updateNode(ctx, node))
+        .map((node) => {
+          if (rand() < 0.01) {
+            node.destPosition = add(node.destPosition, node.destPosition, random([], rand() * 0.2))
+          }
+          const acceleration = getSpringForcePosition(0.1, 20, node)
+          return updateNode(ctx, node, acceleration)
+        })
         .forEach((node) => {
           const alpha = (ctx.millis < fadeTo ? ctx.millis / fadeTo : 1) * node.alpha
           const color = tinycolor(node.color).setAlpha(alpha).toRgbString()
@@ -39,30 +46,33 @@ export default function () {
         })
     })
 
-    promises.push(setTimeoutPromise(15000))
+    promises.push(setTimeoutPromise(10000))
     return Promise.all(promises).then(() => stop(ctx))
   }
 
   function stop (ctx) {
-    unsubscribe()
     return new Promise((resolve) => {
+      unsubscribe()
+      nodes.forEach((node) => {
+        node.sizeVelocity = 0
+        node.sizeDestination = 0
+        node.destPosition = random([], rand() * 2)
+      })
+
       ctx.tick((ctx) => {
         ctx.clear()
         nodes = nodes
           .map((node) => {
-            node.disappearing = node.disappearing || rand() < 0.02
-            if (node.disappearing) {
-              node.size *= 0.98
-              node.alpha *= 0.98
-            }
-            return updateNode(ctx, node)
-          })
-          .filter((node) => node.size > 4 && node.alpha > 0.01)
+            const acceleration = getSpringForcePosition(1, 20, node)
+            node = updateSizeAndAlpha(0.005, 0.007, node)
+            if (node.size < 0) return null
+            return updateNode(ctx, node, acceleration)
+          }).filter((node) => !!node)
 
         if (!nodes.length) return resolve()
 
         nodes.forEach((node) => {
-          const alpha = (ctx.millis < fadeTo ? ctx.millis / fadeTo : 1) * node.alpha
+          const alpha = node.alpha // (ctx.millis < fadeTo ? ctx.millis / fadeTo : 1) * node.alpha
           const color = tinycolor(node.color).setAlpha(alpha).toRgbString()
           drawNode(ctx, node, color, node.size)
         })
@@ -71,16 +81,35 @@ export default function () {
   }
 }
 
-function updateNode (ctx, node) {
+function updateSizeAndAlpha (stiffness, dampening, node) {
+  const x = node.size - node.sizeDestination
+  const springForce = -stiffness * x
+  const damperForce = node.sizeVelocity * -dampening
+  const acceleration = springForce + damperForce
+  node.sizeVelocity += acceleration
+  node.size += node.sizeVelocity
+  node.alpha = Math.min(node.alpha, node.size / 12000)
+  return node
+}
+
+function getSpringForcePosition (stiffness, dampening, node) {
+  const dir = subtract([], node.position, node.destPosition)
+  const x = squaredLength(dir)
+  let force = normalize([], dir)
+  force = scale(force, force, x * -stiffness) // spring
+  const damper = scale([], node.velocity, -dampening)
+  force = add(force, force, damper) // add damper
+  return scale(force, force, 2 / node.size)
+}
+
+function updateNode (ctx, node, acceleration = [0, 0]) {
+  node.velocity = add(node.velocity, node.velocity, acceleration)
   node.position = add(node.position, node.position, node.velocity)
   return node
 }
 
 function drawNode (ctx, node, color, size) {
-  let [ x, y ] = node.position
-  x = Math.sin(x)
-  y = Math.sin(y)
-  ;[ x, y ] = mapVecToCanvas(ctx, [x, y], MARGIN)
+  const [ x, y ] = mapVecToCanvas(ctx, node.position, MARGIN)
   ctx.beginPath()
   ctx.arc(x, y, size, 0, 2 * Math.PI)
   ctx.fillStyle = color
