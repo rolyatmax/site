@@ -3,25 +3,26 @@ import array from 'new-array'
 import tinycolor from 'tinycolor2'
 import { add, subtract, squaredLength, normalize, scale, random } from 'gl-vec2'
 import { setTimeoutPromise } from '../lib/helpers'
+import { drawMargin } from '../lib/drawers'
 import colorPalettes from '../lib/color-palettes'
 
-const NODE_COUNT = 50
+const NODE_COUNT = 75
 const NODE_SIZE = 300
 const MAX_ALPHA = 0.1
-const MARGIN = 40 + NODE_SIZE
-const fadeTo = 8000
+const MARGIN = 40
+const fadeTo = 6000
 
 export default function () {
   const promises = []
   const rand = new Alea()
   const colors = colorPalettes[rand() * colorPalettes.length | 0]
   let nodes = array(NODE_COUNT).map(() => ({
-    position: random([], rand()),
-    destPosition: random([], rand()),
+    position: random([], rand() * 0.65 + 0.35),
+    destPosition: random([], rand() * 0.65 + 0.35),
     velocity: random([], rand() * 0.003),
     alpha: rand() * MAX_ALPHA,
     color: colors[rand() * colors.length | 0],
-    size: rand() * NODE_SIZE
+    size: rand() * NODE_SIZE * 0.75 + (NODE_SIZE * 0.25)
   }))
 
   let unsubscribe
@@ -34,9 +35,9 @@ export default function () {
       nodes
         .map((node) => {
           if (rand() < 0.01) {
-            node.destPosition = add(node.destPosition, node.destPosition, random([], rand() * 0.2))
+            node.destPosition = add(node.destPosition, node.destPosition, random([], rand() * 0.65 + 0.35))
           }
-          const acceleration = getSpringForcePosition(0.1, 20, node)
+          const acceleration = getSpringForcePosition(0.05, 35, node)
           return updateNode(ctx, node, acceleration)
         })
         .forEach((node) => {
@@ -44,6 +45,7 @@ export default function () {
           const color = tinycolor(node.color).setAlpha(alpha).toRgbString()
           drawNode(ctx, node, color, node.size)
         })
+      drawMargin(ctx, MARGIN)
     })
 
     promises.push(setTimeoutPromise(10000))
@@ -56,15 +58,15 @@ export default function () {
       nodes.forEach((node) => {
         node.sizeVelocity = 0
         node.sizeDestination = 0
-        node.destPosition = random([], rand() * 2)
+        node.destPosition = random([], rand())
       })
 
       ctx.tick((ctx) => {
         ctx.clear()
         nodes = nodes
           .map((node) => {
-            const acceleration = getSpringForcePosition(1, 20, node)
-            node = updateSizeAndAlpha(0.005, 0.007, node)
+            const acceleration = getSpringForcePosition(1, 25, node)
+            node = updateSizeAndAlpha(0.003, 0.008, node)
             if (node.size < 0) return null
             return updateNode(ctx, node, acceleration)
           }).filter((node) => !!node)
@@ -76,6 +78,7 @@ export default function () {
           const color = tinycolor(node.color).setAlpha(alpha).toRgbString()
           drawNode(ctx, node, color, node.size)
         })
+        drawMargin(ctx, MARGIN)
       })
     })
   }
@@ -109,7 +112,7 @@ function updateNode (ctx, node, acceleration = [0, 0]) {
 }
 
 function drawNode (ctx, node, color, size) {
-  const [ x, y ] = mapVecToCanvas(ctx, node.position, MARGIN)
+  const [ x, y ] = mapVecToCanvas(ctx, node.position)
   ctx.beginPath()
   ctx.arc(x, y, size, 0, 2 * Math.PI)
   ctx.fillStyle = color
@@ -117,9 +120,9 @@ function drawNode (ctx, node, color, size) {
   return node
 }
 
-function mapVecToCanvas (ctx, vec, margin) {
+function mapVecToCanvas (ctx, vec) {
   return [
-    ctx.map(vec[0], -1, 1, margin, ctx.width - margin),
-    ctx.map(vec[1], -1, 1, margin, ctx.height - margin)
+    ctx.map(vec[0], -1, 1, 0, ctx.width),
+    ctx.map(vec[1], -1, 1, 0, ctx.height)
   ]
 }

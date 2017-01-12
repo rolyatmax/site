@@ -2,6 +2,14 @@ import { distance, add, subtract, scale } from 'gl-vec2'
 
 const { requestAnimationFrame } = window
 
+export function drawMargin (ctx, margin) {
+  ctx.fillStyle = '#fff'
+  ctx.fillRect(0, 0, ctx.width, margin)
+  ctx.fillRect(0, 0, margin, ctx.height)
+  ctx.fillRect(ctx.width - margin, 0, margin, ctx.height)
+  ctx.fillRect(0, ctx.height - margin, ctx.width, margin)
+}
+
 export function drawArc (ctx, arc, color, width) {
   ctx.beginPath()
   ctx.strokeStyle = color

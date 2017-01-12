@@ -11,7 +11,7 @@ export default function () {
 
   function start (ctx) {
     const lineAnimationDuration = 5000
-    const lineIntroductionDuration = 9000
+    const lineIntroductionDuration = 5000
     startAnimation(() => ctx.clear(), lineAnimationDuration + lineIntroductionDuration)
     return startAnimation((step) => {
       const { width, height } = ctx

@@ -26,6 +26,7 @@ export function createAppCanvas () {
     autopause: false,
     container: el,
     globals: false,
+    eventTarget: document.body,
     draw: () => {
       loopCallbacks.forEach(fn => fn(ctx))
     },

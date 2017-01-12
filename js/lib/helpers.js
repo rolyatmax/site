@@ -23,3 +23,7 @@ export function setTimeoutPromise (wait) {
 export function rAFPromise () {
   return new Promise(resolve => requestAnimationFrame(resolve))
 }
+
+export function result (val, ctx) {
+  return typeof val === 'function' ? val(ctx) : val
+}

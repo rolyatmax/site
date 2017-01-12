@@ -24,7 +24,7 @@ export default function () {
       drawArc(ctx, cutArc(arcs[0], perc), color, width)
       drawArc(ctx, cutArc(arcs[1], perc), color, width)
     }, duration)
-    .then(() => setTimeoutPromise(1000))
+    .then(() => setTimeoutPromise(5000))
     .then(() => stop(ctx))
   }
 
