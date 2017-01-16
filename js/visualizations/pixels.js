@@ -58,7 +58,7 @@ export default function () {
           pixel = addSpringForce(pixel, 'angle', ({ position }) => getAngleToPt(position, getMousePos(ctx)), 0.1, 0.98)
           updateObj(ctx, pixel, ['angle'])
           pixel = addSpringForce(pixel, 'angle', ({ position }) => getAngleToPt(position, [0, 0]), 0.1, 0.9)
-          pixel = addSpringForce(pixel, 'length', ({ position }) => Math.max(0, getDistToPt(position, roamer.position) * 12 - 4), 0.2, 0.5)
+          pixel = addSpringForce(pixel, 'length', ({ position }) => Math.max(0, getDistToPt(position, roamer.position) * 10 - 7), 0.2, 0.5)
           return updateObj(ctx, pixel, ['angle', 'length'])
         })
         .forEach((pixel) => drawPixel(ctx, pixel))
@@ -109,6 +109,7 @@ function getDistToPt (position, point) {
   return length(diff)
 }
 
+// useful for debugging
 function drawRoamer (ctx, roamer) {
   const [ x, y ] = mapVecToCanvas(ctx, roamer.position)
   ctx.beginPath()

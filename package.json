@@ -13,7 +13,7 @@
   "author": "Taylor Baldwin <taylorbaldwin@gmail.com> (https://tbaldw.in)",
   "license": "ISC",
   "dependencies": {
-    "alea": "0.0.9",
+    "alea": "^0.0.9",
     "delegate": "^3.0.1",
     "gl-vec2": "^1.0.0",
     "map-obj": "^2.0.0",

@@ -4,8 +4,8 @@ import nodes from './nodes'
 import pixels from './pixels'
 
 export default [
-  // intro,
+  intro,
   // diagonals,
   // nodes,
-  pixels
+  // pixels
 ]
