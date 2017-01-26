@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import triangles from './sketches/triangles'
-// import placeholder from './img/viz-placeholder.png'
 
 class Viz extends Component {
   constructor () {
@@ -26,7 +25,6 @@ class Viz extends Component {
       pointerEvents: 'none',
       opacity: this.state.show ? 1 : 0
     }
-    // return <img src={placeholder} alt='placeholder' style={style} />
     return <div style={style} ref={(el) => { this.container = el }} />
   }
 }

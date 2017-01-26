@@ -2,7 +2,7 @@ import Sketch from 'sketch-js'
 import array from 'new-array'
 import { add, subtract, scale } from 'gl-vec2'
 
-const drawersCount = 50
+const drawersCount = window.innerWidth > 450 ? 50 : 5
 const lineLength = 14
 const turnDegrees = 61
 const drawSpeed = 0.4
@@ -22,6 +22,7 @@ export default function triangles (container) {
     autoclear: false,
     container: container,
     fullscreen: false,
+    retina: window.devicePixelRatio > 1,
     width: width,
     height: height
   })
