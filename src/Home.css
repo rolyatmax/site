@@ -1,0 +1,101 @@
+.Home {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.left {
+  width: 50%;
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.right {
+  width: 50%;
+  margin: 15px;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+.Content {
+  width: 400px;
+}
+
+.Content p {
+  margin: 3.5em 0;
+  font-size: 16px;
+  line-height: 2em;
+  text-align: justify;
+}
+
+.Name {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  margin: 0.2em 0;
+  letter-spacing: -0.1rem;
+}
+
+@media screen and (max-width: 1048px) {
+  .Name {
+    font-size: 42px;
+  }
+  .Content {
+    width: 300px;
+  }
+  .Content p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Name {
+    font-size: 36px;
+  }
+  .Content {
+    width: 250px;
+  }
+  .Content p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .Name {
+    font-size: 36px;
+  }
+  .Home {
+    flex-direction: column;
+    padding: 0 30px;
+  }
+  .Content {
+    width: auto;
+    padding-top: 20px;
+  }
+  .Content p {
+    margin: 2em 0;
+    font-size: 14px;
+    line-height: 2em;
+  }
+  .left {
+    width: 100%;
+    margin: 8px;
+    display: block;
+  }
+  .right {
+    width: 100%;
+    margin: 8px 0 25px;
+  }
+}
