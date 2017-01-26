@@ -88,7 +88,7 @@ class Home extends Component {
                 I'm a full stack JavaScript engineer in New York City.
                 My creative projects generally relate to data visualization
                 or <a href='https://rolyatmax.github.io/sketches' target='_blank'>generative art</a>.
-                Formerly at New York Time R&D and Torando Labs. Currently at BuzzFeed.
+                Formerly at New York Times R&D and Torando Labs. Currently at BuzzFeed.
               </p>
             </div>
             <div style={{...secondaryElementsStyle, transitionDelay: '800ms'}}>

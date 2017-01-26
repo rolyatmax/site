@@ -23,6 +23,7 @@ class Viz extends Component {
       width: '100%',
       height: '100%',
       transition: 'opacity ease-in 1000ms',
+      pointerEvents: 'none',
       opacity: this.state.show ? 1 : 0
     }
     // return <img src={placeholder} alt='placeholder' style={style} />

@@ -79,15 +79,16 @@
   .Home {
     flex-direction: column;
     padding: 0 30px;
+    height: calc(100vh - 30px);
   }
   .Content {
     width: auto;
     padding-top: 20px;
   }
   .Content p {
-    margin: 2em 0;
-    font-size: 14px;
-    line-height: 2em;
+    margin: 1.5em 0;
+    font-size: 13px;
+    line-height: 1.5em;
   }
   .left {
     width: 100%;
@@ -96,6 +97,6 @@
   }
   .right {
     width: 100%;
-    margin: 8px 0 25px;
+    margin: 15px 2px 55px 2px;
   }
 }

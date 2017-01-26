@@ -85,6 +85,20 @@
 }
 
 @media screen and (max-width: 680px) {
+  .Work .scroll-indicator {
+    top: -20px;
+  }
+
+  .scroll-indicator h3 {
+    font-size: 10px;
+    margin-bottom: 1px;
+  }
+
+  .scroll-indicator .down-arrow {
+    height: 8px;
+    width: 8px;
+  }
+
   .Project {
     margin: 40px 0;
     width: 100%;
