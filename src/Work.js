@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import WhenVisible from './WhenVisible'
 import './Work.css'
+import scrollTo from 'scroll-to'
 
 const romanNumerals = 'i ii iii iv v vi vii viii ix x xi xii xiii xiv xv xvi xvii xviii xix xx'.split(' ')
 
@@ -109,16 +110,25 @@ class Work extends Component {
     setTimeout(() => this.setState({ isArrowFadedIn: true }), 5000)
   }
 
+  scrollDown () {
+    const dest = this.workEl.getBoundingClientRect().top + (window.scrollY || 0)
+    scrollTo(0, dest, {
+      ease: 'in-out-quart',
+      duration: 1000
+    });
+  }
+
   render () {
     const { isVisible, isArrowFadedIn } = this.state
     const showScrollIndicator = !isVisible && isArrowFadedIn
     const scrollIndicatorStyle = {
       opacity: showScrollIndicator ? 1 : 0,
-      transform: showScrollIndicator ? 'translateY(0)' : 'translateY(-25px)'
+      transform: showScrollIndicator ? 'translateY(0)' : 'translateY(-25px)',
+      pointerEvents: showScrollIndicator ? 'auto' : 'none'
     }
     return (
-      <div className='Work'>
-        <div className='scroll-indicator' style={scrollIndicatorStyle} >
+      <div className='Work' ref={(el) => this.workEl = el}>
+        <div className='scroll-indicator' style={scrollIndicatorStyle} onClick={() => this.scrollDown()}>
           <h3>WORK</h3>
           <div className='down-arrow' />
         </div>

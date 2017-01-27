@@ -6,6 +6,8 @@
 
 .Work .scroll-indicator {
   width: 100px;
+  padding: 10px;
+  cursor: pointer;
   margin: auto;
   position: relative;
   top: -100px;
@@ -45,6 +47,7 @@
   align-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 80px;
 }
 
 .Project {

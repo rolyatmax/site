@@ -62,12 +62,26 @@ class Name extends Component {
 class Home extends Component {
   constructor () {
     super()
-    this.state = { show: false }
+    this.state = {
+      show: false,
+      height: this.getHeight()
+    }
+    this.resize = this.resize.bind(this)
+  }
+  getHeight () {
+    return `${window.innerHeight - 30}px`
   }
   componentDidMount () {
+    window.addEventListener('resize', this.resize)
     setTimeout(() => {
       this.setState({ show: true })
     }, 550)
+  }
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.resize)
+  }
+  resize () {
+    this.setState({ height: this.getHeight() })
   }
   render () {
     const secondaryElementsStyle = {
@@ -78,8 +92,9 @@ class Home extends Component {
         'transform cubic-bezier(0.07, 0.9, 0.64, 0.98) 1000ms'
       ].join(', ')
     }
+    const { height } = this.state
     return (
-      <div className='Home' style={{ height: `${window.innerHeight - 30}px` }}>
+      <div className='Home' style={{ height }}>
         <div className='left'>
           <div className='Content'>
             <Name>Taylor Baldwin</Name>

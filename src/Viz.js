@@ -5,16 +5,25 @@ class Viz extends Component {
   constructor () {
     super()
     this.state = { show: false }
+    this.resize = this.resize.bind(this)
   }
   componentDidMount () {
-    setTimeout(() => {
+    window.addEventListener('resize', this.resize)
+    this.timeoutToken = setTimeout(() => {
       this.setState({ show: true })
       this.destroy = triangles(this.container)
     }, 1400)
   }
   componentWillUnmount () {
+    clearTimeout(this.timeoutToken)
     if (this.destroy) {
       this.destroy()
+    }
+  }
+  resize () {
+    if (this.destroy) {
+      this.destroy()
+      this.destroy = triangles(this.container)
     }
   }
   render () {

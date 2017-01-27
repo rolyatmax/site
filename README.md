@@ -4,11 +4,8 @@ codebase for tbaldw.in
 
 ## To Do
 
- - [X] Fade in images when scrolling
- - [X] Build viz animation
- - [X] Initial fade in with blur
+ - [ ] Fade in images when scrolling
  - [ ] Hover effects for projects
- - [X] add scroll indicator to intro animation
  - [ ] Footer with email and social
 
 ### Notes on scripts
