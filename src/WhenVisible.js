@@ -7,13 +7,19 @@ class WhenVisible extends Component {
   constructor () {
     super()
     this.checkScroll = this.checkScroll.bind(this)
+    this.setPosition = this.setPosition.bind(this)
   }
   componentDidMount () {
     this.rAFToken = requestAnimationFrame(this.checkScroll)
+    this.setPosition()
+    window.addEventListener('resize', this.setPosition)
+  }
+  setPosition () {
     this.position = window.scrollY + this.el.getBoundingClientRect().top
   }
   componentWillUnmount () {
     cancelAnimationFrame(this.rAFToken)
+    window.removeEventListener('resize', this.setPosition)
   }
   checkScroll () {
     if (window.scrollY + window.innerHeight > this.position + buffer) {
