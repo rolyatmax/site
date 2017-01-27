@@ -41,6 +41,7 @@ export default function triangles (container) {
 
   const ctx = Sketch.create({
     autoclear: false,
+    autopause: false,
     container: container,
     fullscreen: false,
     retina: window.devicePixelRatio > 1,

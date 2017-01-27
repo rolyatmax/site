@@ -88,7 +88,7 @@ class Project extends Component {
     const { project, i } = this.props
     return (
       <li className='Project' style={{ opacity: this.state.show ? 1 : 0 }}>
-        <a href={project.url} target='_blank'>
+        <a href={project.url}>
           <Image src={project.image} alt={`${project.title} - ${project.description}`} />
           <h2>
             <span>{romanNumerals[i]}.</span> {project.title}
@@ -115,7 +115,7 @@ class Work extends Component {
     scrollTo(0, dest, {
       ease: 'in-out-quart',
       duration: 1000
-    });
+    })
   }
 
   render () {
@@ -127,7 +127,7 @@ class Work extends Component {
       pointerEvents: showScrollIndicator ? 'auto' : 'none'
     }
     return (
-      <div className='Work' ref={(el) => this.workEl = el}>
+      <div className='Work' ref={(el) => { this.workEl = el }}>
         <div className='scroll-indicator' style={scrollIndicatorStyle} onClick={() => this.scrollDown()}>
           <h3>WORK</h3>
           <div className='down-arrow' />

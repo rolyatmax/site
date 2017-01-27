@@ -8,9 +8,9 @@ codebase for tbaldw.in
  - [ ] Fade in images when scrolling
  - [ ] Hover effects for projects
  - [ ] Footer with email and social
- - [ ] Fix kerning in name
- - [ ] Don't pause animation when not focused?
- - [ ] Don't open projects in new tab
+ - [X] Fix kerning in name
+ - [X] Don't pause animation when not focused?
+ - [X] Don't open projects in new tab
  - [ ] Open projects within the SPA?
 
 ### Notes on scripts

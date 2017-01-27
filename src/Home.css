@@ -47,6 +47,11 @@
   letter-spacing: -0.1rem;
 }
 
+/* fixing kerning on my name */
+.Name span:first-child {
+  margin-right: -0.2rem;
+}
+
 @media screen and (max-width: 1048px) {
   .Name {
     font-size: 42px;
