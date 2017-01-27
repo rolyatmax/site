@@ -4,6 +4,7 @@ codebase for tbaldw.in
 
 ## To Do
 
+ - [ ] Fix Mobile Safari resizing bug (causes <Home> & <Viz> sections to jump around)
  - [ ] Fade in images when scrolling
  - [ ] Hover effects for projects
  - [ ] Footer with email and social
