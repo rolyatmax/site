@@ -1,12 +1,28 @@
 import Sketch from 'sketch-js'
 import array from 'new-array'
-import { add, subtract, scale } from 'gl-vec2'
+import { add, subtract, scale, distance } from 'gl-vec2'
 
-const drawersCount = window.innerWidth > 450 ? 50 : 5
-const lineLength = 14
-const turnDegrees = 61
-const drawSpeed = 0.4
-const opacity = 0.04
+const configs = [{
+  drawersCount: 100,
+  lineLength: 10,
+  turnDegrees: 61,
+  drawSpeed: 0.4,
+  opacity: 0.02,
+  circleSize: 0.7
+},
+{
+  drawersCount: 20,
+  lineLength: 16,
+  turnDegrees: 60,
+  drawSpeed: 0.4,
+  opacity: 0.04,
+  circleSize: 0.7
+}]
+
+const {
+  drawersCount, lineLength, turnDegrees, drawSpeed, opacity, circleSize
+} = configs[configs.length * Math.random() | 0]
+
 const lineColors = [
   `rgba(100, 100, 100, ${opacity})`,
   `rgba(85, 153, 211, ${opacity})`
@@ -26,6 +42,9 @@ export default function triangles (container) {
     width: width,
     height: height
   })
+
+  const radius = Math.min(ctx.width, ctx.height) / 2 * circleSize
+  const center = [ctx.width / 2, ctx.height / 2]
 
   ctx.setup = function () {
     drawers = array(drawersCount).map(createDrawer)
@@ -66,9 +85,8 @@ export default function triangles (container) {
   }
 
   function createDrawer (position) {
-    const center = [ctx.width / 2, ctx.height / 2]
     position = position || center
-    // position = add([], position, (Math.random() > 0.5 ? [0, 0] : [lineLength, lineLength]))
+    // position = add([], position, (Math.random() > 0.5 ? [0, 0] : [lineLength / 2, lineLength / 2]))
     return {
       position: position,
       progress: 0,
@@ -103,7 +121,9 @@ export default function triangles (container) {
       const vec = scale([], [Math.cos(rads), Math.sin(rads)], lineLength)
       return add(vec, vec, position)
     })
-    return points.filter(pt => !pathsTaken[key(pt, position)])
+    return points.filter(pt => {
+      return !pathsTaken[key(pt, position)] && distance(pt, center) <= radius
+    })
   }
 
   function isInViewport (point) {
