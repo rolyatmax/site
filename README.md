@@ -4,10 +4,14 @@ codebase for tbaldw.in
 
 ## To Do
 
- - [ ] Fix Mobile Safari resizing bug (causes <Home> & <Viz> sections to jump around)
+ - [ ] Fix mobile resizing bug (causes <Home> & <Viz> sections to jump around)
  - [ ] Fade in images when scrolling
  - [ ] Hover effects for projects
  - [ ] Footer with email and social
+ - [ ] Fix kerning in name
+ - [ ] Don't pause animation when not focused?
+ - [ ] Don't open projects in new tab
+ - [ ] Open projects within the SPA?
 
 ### Notes on scripts
 
