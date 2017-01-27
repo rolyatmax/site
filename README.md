@@ -11,6 +11,7 @@ codebase for tbaldw.in
  - [X] Fix kerning in name
  - [X] Don't pause animation when not focused?
  - [X] Don't open projects in new tab
+ - [ ] Fix mobile layout
  - [ ] Open projects within the SPA?
 
 ### Notes on scripts
