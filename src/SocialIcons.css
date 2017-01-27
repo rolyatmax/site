@@ -32,9 +32,6 @@
 }
 
 @media screen and (max-width: 680px) {
-  .SocialIcons {
-    justify-content: center;
-  }
   .SocialIcons li {
     padding-right: 30px;
   }

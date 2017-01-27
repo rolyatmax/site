@@ -2,25 +2,29 @@ import Sketch from 'sketch-js'
 import array from 'new-array'
 import { add, subtract, scale, distance } from 'gl-vec2'
 
-const configs = [{
-  drawersCount: 100,
-  lineLength: 10,
-  turnDegrees: 61,
-  drawSpeed: 0.4,
-  opacity: 0.02,
-  circleSize: 0.7
-},
-{
-  drawersCount: 20,
-  lineLength: 16,
-  turnDegrees: 60,
-  drawSpeed: 0.4,
-  opacity: 0.04,
-  circleSize: 0.7
-}]
+const configs = [
+  {
+    drawersCount: 100,
+    lineLength: 10,
+    turnDegrees: 61,
+    drawSpeed: 0.4,
+    opacity: 0.02,
+    circleSize: 0.7,
+    stopAfter: 90
+  },
+  {
+    drawersCount: 20,
+    lineLength: 16,
+    turnDegrees: 60,
+    drawSpeed: 0.4,
+    opacity: 0.04,
+    circleSize: 0.7,
+    stopAfter: 11
+  }
+]
 
 const {
-  drawersCount, lineLength, turnDegrees, drawSpeed, opacity, circleSize
+  drawersCount, lineLength, turnDegrees, drawSpeed, opacity, circleSize, stopAfter
 } = configs[configs.length * Math.random() | 0]
 
 const lineColors = [
@@ -31,6 +35,7 @@ const lineColors = [
 export default function triangles (container) {
   let drawers
   let pathsTaken = {}
+  let timeoutToken
 
   const { width, height } = container.getBoundingClientRect()
 
@@ -46,7 +51,11 @@ export default function triangles (container) {
   const radius = Math.min(ctx.width, ctx.height) / 2 * circleSize
   const center = [ctx.width / 2, ctx.height / 2]
 
-  ctx.setup = function () {
+  ctx.setup = ctx.resize = function () {
+    pathsTaken = {}
+    clearTimeout(timeoutToken)
+    ctx.start()
+    timeoutToken = setTimeout(ctx.stop.bind(ctx), stopAfter * 1000)
     drawers = array(drawersCount).map(createDrawer)
   }
 

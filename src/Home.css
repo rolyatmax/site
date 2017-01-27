@@ -1,5 +1,4 @@
 .Home {
-  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -79,7 +78,6 @@
   .Home {
     flex-direction: column;
     padding: 0 30px;
-    height: calc(100vh - 30px);
   }
   .Content {
     width: auto;

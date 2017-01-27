@@ -79,7 +79,7 @@ class Home extends Component {
       ].join(', ')
     }
     return (
-      <div className='Home'>
+      <div className='Home' style={{ height: `${window.innerHeight - 30}px` }}>
         <div className='left'>
           <div className='Content'>
             <Name>Taylor Baldwin</Name>
