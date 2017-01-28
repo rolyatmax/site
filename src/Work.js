@@ -25,6 +25,12 @@ const projects = [
     url: '/citibike'
   },
   {
+    image: require('./img/boids.jpg'),
+    title: 'Boids',
+    description: 'Experimenting with flocking algorithms. Each color flocks together, generating some interesting patterns.',
+    url: '/boids'
+  },
+  {
     image: require('./img/copland.jpg'),
     title: 'Copland',
     description: 'Combine piano and strings in this sequencer and watch the music evolve.',
