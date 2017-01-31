@@ -61,6 +61,12 @@ const projects = [
     url: '/viz'
   },
   {
+    image: require('./img/waves.jpg'),
+    title: 'Waves',
+    description: 'Experiments in animating splines.',
+    url: '/waves'
+  },
+  {
     image: require('./img/sketches.jpg'),
     title: 'Sketches',
     description: 'A place to throw the generative art I make from time to time.',
@@ -70,9 +76,7 @@ const projects = [
 
 function Image ({ src, alt }) {
   return (
-    <div className='Image'>
-      <img src={src} alt={alt} />
-    </div>
+    <div className='Image' style={{ backgroundImage: `url(${src})` }} />
   )
 }
 

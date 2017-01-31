@@ -62,12 +62,8 @@
   width: 100%;
   height: 170px;
   overflow: hidden;
-}
-
-.Project img {
-  border: none;
-  width: 100%;
-  background: #ddd;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
 .Project h2 {
