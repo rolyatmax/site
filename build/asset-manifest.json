@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.9ac4b829.css",
-  "main.css.map": "static/css/main.9ac4b829.css.map",
-  "main.js": "static/js/main.17c2ba69.js",
-  "main.js.map": "static/js/main.17c2ba69.js.map",
+  "main.css": "static/css/main.92ad9e92.css",
+  "main.css.map": "static/css/main.92ad9e92.css.map",
+  "main.js": "static/js/main.eb251d56.js",
+  "main.js.map": "static/js/main.eb251d56.js.map",
   "static/media/boids.jpg": "static/media/boids.7d419453.jpg",
   "static/media/citibike.jpg": "static/media/citibike.bdcf042a.jpg",
   "static/media/copland.jpg": "static/media/copland.91d189cf.jpg",
@@ -12,5 +12,6 @@
   "static/media/rota.jpg": "static/media/rota.a252c154.jpg",
   "static/media/sketches.jpg": "static/media/sketches.9e772bf8.jpg",
   "static/media/tictactoe.jpg": "static/media/tictactoe.9f6e96f6.jpg",
-  "static/media/viz.jpg": "static/media/viz.259e6bc2.jpg"
+  "static/media/viz.jpg": "static/media/viz.259e6bc2.jpg",
+  "static/media/waves.jpg": "static/media/waves.5cda57ba.jpg"
 }
