@@ -50,7 +50,7 @@ const projects = [
   },
   {
     image: require('./img/tictactoe.jpg'),
-    title: 'Tic-Tac-Toe',
+    title: 'Tic-Tac-Toe ML',
     description: 'Teach your browser to play tic-tac-toe with a reinforcement learning algorithm.',
     url: '/tictactoe'
   },
