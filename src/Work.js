@@ -31,6 +31,12 @@ const projects = [
     url: '/boids'
   },
   {
+    image: require('./img/waves.jpg'),
+    title: 'Waves',
+    description: 'Experiments in animating splines.',
+    url: '/waves'
+  },
+  {
     image: require('./img/copland.jpg'),
     title: 'Copland',
     description: 'Combine piano and strings in this sequencer and watch the music evolve.',
@@ -49,6 +55,12 @@ const projects = [
     url: '/rota'
   },
   {
+    image: require('./img/sketches.jpg'),
+    title: 'Sketches',
+    description: 'A place to throw the generative art I make from time to time.',
+    url: 'https://rolyatmax.github.io/sketches/'
+  },
+  {
     image: require('./img/tictactoe.jpg'),
     title: 'Tic-Tac-Toe ML',
     description: 'Teach your browser to play tic-tac-toe with a reinforcement learning algorithm.',
@@ -59,18 +71,6 @@ const projects = [
     title: 'Viz',
     description: 'An early experiment that visualizes a favorite track in 3D space.',
     url: '/viz'
-  },
-  {
-    image: require('./img/waves.jpg'),
-    title: 'Waves',
-    description: 'Experiments in animating splines.',
-    url: '/waves'
-  },
-  {
-    image: require('./img/sketches.jpg'),
-    title: 'Sketches',
-    description: 'A place to throw the generative art I make from time to time.',
-    url: 'https://rolyatmax.github.io/sketches/'
   }
 ]
 
