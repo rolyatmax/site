@@ -19,9 +19,15 @@ const projects = [
     url: '/physics-painting'
   },
   {
+    image: require('./img/citibike-trips.jpg'),
+    title: 'The CitiBike Commute',
+    description: 'All the Citi Bike trips from a single day visualized in WebGL.',
+    url: '/citibike-trips'
+  },
+  {
     image: require('./img/citibike.jpg'),
-    title: 'Citibike Summer',
-    description: 'Visualizing Citibike usage for an average summer week.',
+    title: 'CitiBike Summer',
+    description: 'Visualizing CitiBike usage for an average summer week.',
     url: '/citibike'
   },
   {
