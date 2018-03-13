@@ -7,22 +7,28 @@ const romanNumerals = 'i ii iii iv v vi vii viii ix x xi xii xiii xiv xv xvi xvi
 
 const projects = [
   {
-    image: require('./img/nodes.jpg'),
-    title: 'Nodes',
-    description: 'Particles float about, connecting with neighbors, to form an intricate web.',
-    url: '/nodes'
-  },
-  {
-    image: require('./img/physics-painting.jpg'),
-    title: 'Physics Painting',
-    description: 'Particles react to forces, painting photographs to canvas.',
-    url: '/physics-painting'
+    image: require('./img/audiofabric.jpg'),
+    title: 'Audiofabric',
+    description: 'A 3D fabric pulses with the music.',
+    url: '/audiofabric'
   },
   {
     image: require('./img/citibike-trips.jpg'),
     title: 'The CitiBike Commute',
     description: 'All the Citi Bike trips from a single day visualized in WebGL.',
     url: '/citibike-trips'
+  },
+  {
+    image: require('./img/nodes.jpg'),
+    title: 'Nodes',
+    description: 'Particles float about, connecting with neighbors, to form an intricate web.',
+    url: '/nodes'
+  },
+  {
+    image: require('./img/sketches.jpg'),
+    title: 'Sketches',
+    description: 'A place to throw the generative art I make from time to time.',
+    url: 'https://rolyatmax.github.io/sketches/'
   },
   {
     image: require('./img/citibike.jpg'),
@@ -37,10 +43,10 @@ const projects = [
     url: '/boids'
   },
   {
-    image: require('./img/waves.jpg'),
-    title: 'Waves',
-    description: 'Experiments in animating splines.',
-    url: '/waves'
+    image: require('./img/tictactoe.jpg'),
+    title: 'Tic-Tac-Toe ML',
+    description: 'Teach your browser to play tic-tac-toe with a reinforcement learning algorithm.',
+    url: '/tictactoe'
   },
   {
     image: require('./img/copland.jpg'),
@@ -49,10 +55,10 @@ const projects = [
     url: '/copland'
   },
   {
-    image: require('./img/dots.jpg'),
-    title: 'Dots',
-    description: 'Inspired by the kids\' game Dots & Boxes.',
-    url: '/dots'
+    image: require('./img/physics-painting.jpg'),
+    title: 'Physics Painting',
+    description: 'Particles react to forces, painting photographs to canvas.',
+    url: '/physics-painting'
   },
   {
     image: require('./img/rota.jpg'),
@@ -61,16 +67,16 @@ const projects = [
     url: '/rota'
   },
   {
-    image: require('./img/sketches.jpg'),
-    title: 'Sketches',
-    description: 'A place to throw the generative art I make from time to time.',
-    url: 'https://rolyatmax.github.io/sketches/'
+    image: require('./img/dots.jpg'),
+    title: 'Dots',
+    description: 'Inspired by the kids\' game Dots & Boxes.',
+    url: '/dots'
   },
   {
-    image: require('./img/tictactoe.jpg'),
-    title: 'Tic-Tac-Toe ML',
-    description: 'Teach your browser to play tic-tac-toe with a reinforcement learning algorithm.',
-    url: '/tictactoe'
+    image: require('./img/waves.jpg'),
+    title: 'Waves',
+    description: 'Experiments in animating splines.',
+    url: '/waves'
   },
   {
     image: require('./img/viz.jpg'),
