@@ -1,3 +1,4 @@
+import Alea from 'alea'
 import fit from 'canvas-fit'
 import createCamera from 'perspective-camera'
 import getPlaneNormal from 'get-plane-normal'
@@ -7,6 +8,7 @@ import { triangulate } from 'delaunay'
 import { normalize, dot, subtract, add, scale } from 'gl-vec3'
 
 let previousHeightStyle
+const startTime = Date.now()
 
 export default function fabric (container) {
   if (!previousHeightStyle) {
@@ -30,19 +32,19 @@ export default function fabric (container) {
   }
 
   let timeout
-  const startTime = Date.now()
+  const rand = new Alea(5)
   const lightSource = []
   const cameraPosition = []
   const lookAt = [0, 0, 0]
-  const simplex = new SimplexNoise(Math.random)
+  const simplex = new SimplexNoise(rand)
   const camera = createCamera({
     fov: Math.PI / 8,
     viewport: [0, 0, ctx.canvas.width, ctx.canvas.height]
   })
 
   const positions = newArray(settings.points).map(() => {
-    const rads = Math.random() * Math.PI * 2
-    const mag = Math.pow(Math.random(), 0.5)
+    const rads = rand() * Math.PI * 2
+    const mag = Math.pow(rand(), 0.5)
     return [
       Math.cos(rads) * mag,
       Math.sin(rads) * mag
