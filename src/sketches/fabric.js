@@ -6,7 +6,16 @@ import SimplexNoise from 'simplex-noise'
 import { triangulate } from 'delaunay'
 import { normalize, dot, subtract, add, scale } from 'gl-vec3'
 
+let previousHeightStyle
+
 export default function fabric (container) {
+  if (!previousHeightStyle) {
+    previousHeightStyle = container.style.height
+  }
+  container.style.height = previousHeightStyle
+  const { width, height } = container.getBoundingClientRect()
+  container.style.height = `${Math.min(width, height)}px`
+
   const canvas = container.appendChild(document.createElement('canvas'))
   const ctx = canvas.getContext('2d')
   fit(canvas, container)
