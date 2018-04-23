@@ -7,6 +7,12 @@ const romanNumerals = 'i ii iii iv v vi vii viii ix x xi xii xiii xiv xv xvi xvi
 
 const projects = [
   {
+    image: require('./img/all-the-buildings.jpg'),
+    title: 'All the Buildings in Manhattan',
+    description: 'An interactive 3D visualization of the all the buildings in Manhattan.',
+    url: '/nyc-buildings'
+  },
+  {
     image: require('./img/audiofabric.jpg'),
     title: 'Audiofabric',
     description: 'A 3D fabric pulses with the music.',
