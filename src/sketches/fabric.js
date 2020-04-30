@@ -1,3 +1,5 @@
+/* global requestAnimationFrame, cancelAnimationFrame */
+
 import Alea from 'alea'
 import fit from 'canvas-fit'
 import createCamera from 'perspective-camera'
@@ -67,7 +69,7 @@ export default function fabric (container) {
   const tris = []
 
   function update () {
-    const millis = Date.now() - startTime;
+    const millis = Date.now() - startTime
     const color = settings.color.slice()
     color[0] += 360 + Math.cos(millis / 7000) * 20 | 0
     color[0] %= 360
