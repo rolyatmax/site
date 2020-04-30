@@ -25,10 +25,10 @@ const projects = [
     url: '/citibike-trips'
   },
   {
-    image: require('./img/nodes.jpg'),
-    title: 'Nodes',
-    description: 'Particles float about, connecting with neighbors, to form an intricate web.',
-    url: '/nodes'
+    image: require('./img/copland.jpg'),
+    title: 'Copland',
+    description: 'Combine piano and strings in this sequencer and watch the music evolve.',
+    url: '/copland'
   },
   {
     image: require('./img/sketches.jpg'),
@@ -54,18 +54,7 @@ const projects = [
     description: 'Teach your browser to play tic-tac-toe with a reinforcement learning algorithm.',
     url: '/tictactoe'
   },
-  {
-    image: require('./img/copland.jpg'),
-    title: 'Copland',
-    description: 'Combine piano and strings in this sequencer and watch the music evolve.',
-    url: '/copland'
-  },
-  {
-    image: require('./img/physics-painting.jpg'),
-    title: 'Physics Painting',
-    description: 'Particles react to forces, painting photographs to canvas.',
-    url: '/physics-painting'
-  },
+
   {
     image: require('./img/rota.jpg'),
     title: 'Rota',
@@ -73,22 +62,16 @@ const projects = [
     url: '/rota'
   },
   {
+    image: require('./img/nodes.jpg'),
+    title: 'Nodes',
+    description: 'Particles float about, connecting with neighbors, to form an intricate web.',
+    url: '/nodes'
+  },
+  {
     image: require('./img/dots.jpg'),
     title: 'Dots',
     description: 'Inspired by the kids\' game Dots & Boxes.',
     url: '/dots'
-  },
-  {
-    image: require('./img/waves.jpg'),
-    title: 'Waves',
-    description: 'Experiments in animating splines.',
-    url: '/waves'
-  },
-  {
-    image: require('./img/viz.jpg'),
-    title: 'Viz',
-    description: 'An early experiment that visualizes a favorite track in 3D space.',
-    url: '/viz'
   }
 ]
 
@@ -135,7 +118,7 @@ class Work extends Component {
   }
 
   componentWillMount () {
-    setTimeout(() => this.setState({ isArrowFadedIn: true }), 5000)
+    setTimeout(() => this.setState({ isArrowFadedIn: true }), 2000)
   }
 
   scrollDown () {
