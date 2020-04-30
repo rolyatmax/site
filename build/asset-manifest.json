@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.92ad9e92.css",
-  "main.css.map": "static/css/main.92ad9e92.css.map",
-  "main.js": "static/js/main.a5e26585.js",
-  "main.js.map": "static/js/main.a5e26585.js.map",
+  "main.css": "static/css/main.226424ae.css",
+  "main.css.map": "static/css/main.226424ae.css.map",
+  "main.js": "static/js/main.54a6cb7c.js",
+  "main.js.map": "static/js/main.54a6cb7c.js.map",
   "static/media/all-the-buildings.jpg": "static/media/all-the-buildings.66b19347.jpg",
   "static/media/audiofabric.jpg": "static/media/audiofabric.cef520e3.jpg",
   "static/media/boids.jpg": "static/media/boids.7d419453.jpg",
@@ -11,10 +11,7 @@
   "static/media/copland.jpg": "static/media/copland.91d189cf.jpg",
   "static/media/dots.jpg": "static/media/dots.5cc97eed.jpg",
   "static/media/nodes.jpg": "static/media/nodes.1c181fd1.jpg",
-  "static/media/physics-painting.jpg": "static/media/physics-painting.0e6747bf.jpg",
   "static/media/rota.jpg": "static/media/rota.a252c154.jpg",
   "static/media/sketches.jpg": "static/media/sketches.9e772bf8.jpg",
-  "static/media/tictactoe.jpg": "static/media/tictactoe.9f6e96f6.jpg",
-  "static/media/viz.jpg": "static/media/viz.259e6bc2.jpg",
-  "static/media/waves.jpg": "static/media/waves.5cda57ba.jpg"
+  "static/media/tictactoe.jpg": "static/media/tictactoe.9f6e96f6.jpg"
 }
