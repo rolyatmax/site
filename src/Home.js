@@ -100,10 +100,10 @@ class Home extends Component {
             <Name>Taylor Baldwin</Name>
             <div style={{...secondaryElementsStyle, transitionDelay: '450ms'}}>
               <p>
-                I'm a full stack JavaScript engineer in New York City.
-                My creative projects generally relate to data visualization
-                or <a href='https://rolyatmax.github.io/sketches' target='_blank'>generative art</a>.
-                Formerly at New York Times R&D and BuzzFeed. Currently doing data viz at Uber.
+                I'm a JavaScript engineer in New York City.
+                My creative projects generally have to do with data
+                vis, <a href='https://rolyatmax.github.io/sketches' target='_blank'>generative art</a>, or
+                machine learning. Formerly at Uber, New York Times R&D, and BuzzFeed.
               </p>
             </div>
             <div style={{...secondaryElementsStyle, transitionDelay: '800ms'}}>
